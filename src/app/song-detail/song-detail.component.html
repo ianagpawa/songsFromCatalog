@@ -1,0 +1,9 @@
+<div *ngIf="song">
+  <h2>{{ song.title | uppercase }}</h2>
+  <h3>by {{song.artist}}</h3>
+  <div>
+    <label>title:
+      <input [(ngModel)]="song.title" placeholder="title">
+    </label>
+  </div>
+</div>

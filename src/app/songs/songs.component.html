@@ -1,18 +1,13 @@
 
 
 <h2>Songs</h2>
-<ul>
-  <li *ngFor="let song of songs" (click)="onSelect(song)">
+<ul class='songs'>
+  <li *ngFor="let song of songs" 
+      (click)="onSelect(song)" 
+      [class.selected]="song === selectedSong">
     {{song.title}} by {{song.artist}}
   </li>
 </ul>
 
-<div *ngIf="selectedSong">
-  <h2>{{ selectedSong.title | uppercase }} Details</h2>
-  <h3>by {{selectedSong.artist}}</h3>
-  <div>
-    <label>title:
-      <input [(ngModel)]="selectedSong.title" placeholder="title">
-    </label>
-  </div>
-</div>
+<app-song-detail [song]="selectedSong"></app-song-detail>
+
