@@ -1,13 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AgGridNg2 } from 'ag-grid-angular';
+
 import { Song } from '../song';
-import { Songs } from '../mock_songs';
+import { SONGS } from '../mock_songs';
 
 @Component({
   selector: 'app-songs',
   templateUrl: './songs.component.html',
   styleUrls: ['./songs.component.scss']
 })
+
 export class SongsComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+    this.rowData = SONGS;
+  }
+
+  @ViewChild('agGrid') agGrid: AgGridNg2;
+
   song: Song = {
     artist: "Paul Simon", 
     genre: "", 
@@ -20,17 +32,29 @@ export class SongsComponent implements OnInit {
     youtube: "https://www.youtube.com/watch?v=YeYPLhCFrP0"
   };
 
-  songs = Songs;
-  
   selectedSong: Song;
 
-  onSelect(song: Song): void{
-    this.selectedSong = song;
-  }
+  rowData: Song[];
 
-  constructor() { }
+  columnDefs = [
+    {headerName: 'ID', field: 'id' },
+    {headerName: 'Title', field: 'title' },
+    {headerName: 'Artist', field: 'artist' },
+    {headerName: 'Youtube Link', field: 'youtube' },
+    {headerName: 'Time Created', field: 'time_created' },
+    {headerName: 'Playlist ID', field: 'playlist_id' },
+    {headerName: 'User ID', field: 'user_id' }
+  ]
 
-  ngOnInit() {
+  selectSong(){
+    const selectedNodes = this.agGrid.api.getSelectedNodes();
+    const selectedSong = selectedNodes.map( node => node.data ).find(u => u.id === u.id);
+    this.selectedSong = selectedSong;
   }
+  
+
+
+
+  
 
 }

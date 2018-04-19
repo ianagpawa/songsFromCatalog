@@ -1,5 +1,5 @@
 
-
+<!-- 
 <h2>Songs</h2>
 <ul class='songs'>
   <li *ngFor="let song of songs" 
@@ -7,7 +7,16 @@
       [class.selected]="song === selectedSong">
     {{song.title}} by {{song.artist}}
   </li>
-</ul>
+</ul> -->
 
 <app-song-detail [song]="selectedSong"></app-song-detail>
-
+<ag-grid-angular 
+    #agGrid
+    style="width: 95vw; height: 95vh;" 
+    class="ag-theme-balham"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefs"
+    rowSelection="single"
+    (click)="selectSong()"
+    >
+</ag-grid-angular>

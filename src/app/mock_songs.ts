@@ -1,6 +1,6 @@
 import { Song } from "./song";
 
-export const Songs: Song[] = [
+export const SONGS: Song[] = [
       {
         "artist": "Secret Machines", 
         "genre": "", 
