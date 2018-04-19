@@ -4,7 +4,7 @@ import { Song } from '../song';
 @Component({
   selector: 'app-song-detail',
   templateUrl: './song-detail.component.html',
-  styleUrls: ['./song-detail.component.css']
+  styleUrls: ['./song-detail.component.scss']
 })
 export class SongDetailComponent implements OnInit {
   @Input() song: Song;
